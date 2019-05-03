@@ -9,3 +9,5 @@ let hat = {
         return this.name + ", price: " + this.price + " , color: " + this.color + " , image: " + this.imageHref;
     }
 };
+
+console.log(hat.toString()); // test the function

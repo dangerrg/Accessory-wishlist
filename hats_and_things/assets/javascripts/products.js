@@ -108,4 +108,6 @@ function displayHat(hats) {
   newDiv4.appendChild(newButton);
 }
 
-displayHat(hats);
+for (let i = 0; i < hats.length; i++) {
+  displayHat(hats[i]);
+};

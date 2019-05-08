@@ -25,7 +25,7 @@ Hat.prototype.toString = function() {
     return "name: " + this.name + ", price: " + this.price + " , color: " + this.color + " , image: " + this.imageHref;
 };
 
-const hats = []; // The global variable that store the hats array.
+hat = []; // The global variable that store the hats array.
 // Baseball caps
 let capRed = new Hat("Baseball Cap", 11.99, "red", "./assets/images/red/hats/1.png");
 let capBlue = new Hat("Baseball Cap", 11.99, "blue", "./assets/images/blue/hats/1.png");
@@ -46,71 +46,71 @@ let trilbyR = new Hat("Trilby", 10.99, "red", "./assets/images/red/hats/4.png");
 let trilbyB = new Hat("Trilby", 10.99, "blue", "./assets/images/blue/hats/4.png");
 let trilbyY = new Hat("Trilby", 10.99, "yellow", "./assets/images/yellow/hats/4.png");
 
-hats.push(capRed, capBlue, capYellow, capGreen, beanieR, beanieB, beanieG, strawY, strawB, trilbyR, trilbyB, trilbyY);
+hat.push(capRed, capBlue, capYellow, capGreen, beanieR, beanieB, beanieG, strawY, strawB, trilbyR, trilbyB, trilbyY);
 
 // Defines the displayHat(hat) function that create a Hat object
-function displayHat(hats) {
+function displayHat(hat) {
     // creates the 1st <div> with class="accessory col-sm-4"
-    let parentDiv = document.querySelector('#products'); // (this is the container)
-    let newDiv = document.createElement('div');
-    newDiv.className = 'accessory col-sm-4';
-    parentDiv.appendChild(newDiv);
+    let parentProducts = document.querySelector('#products'); // (this is the container)
+    let hatComponent = document.createElement('div');
+    hatComponent.className = 'accessory col-sm-4' + hat.color;
+    parentProducts.appendChild(hatComponent);
 
     // creates the 2nd <div> with class="card my-3" (nested within the 1st <div>)
-    let div = document.getElementsByClassName('accessory col-sm-4');
-    let newDiv2 = document.createElement('div');
-    newDiv2.className = 'card my-3';
-    newDiv.appendChild(newDiv2);
-    // console.log(div);
+    let prevComponent = document.getElementsByClassName('accessory col-sm-4');
+    let hatComponent2 = document.createElement('div');
+    hatComponent2.className = 'card my-3';
+    hatComponent.appendChild(hatComponent2);
+    // console.log(prevComponent);
 
     // creates the 3rd <div> with class="currency btn btn-light disabled" (nested within the 2nd <div>)
-    div = document.getElementsByClassName('card my-3');
-    let newDiv3 = document.createElement('div');
-    newDiv3.className = 'currency btn btn-light disabled';
-    newDiv3.textContent = hats.price;
-    newDiv2.appendChild(newDiv3);
+    prevComponent = document.getElementsByClassName('card my-3');
+    let hatCurrency = document.createElement('div');
+    hatCurrency.className = 'currency btn btn-light disabled';
+    hatCurrency.textContent = hat.price;
+    hatComponent2.appendChild(hatCurrency);
 
     // creates the <img> (nested also within the 2nd <div>)
-    div = document.getElementsByClassName('currency btn btn-light disabled');
-    let newImg = document.createElement('img');
-    newImg.className = 'card-img-top';
-    newImg.src = hats.imageHref;
-    newImg.alt = 'Image of baseball cap';
-    newDiv2.appendChild(newImg);
+    prevComponent = document.getElementsByClassName('currency btn btn-light disabled');
+    let hatImage = document.createElement('img');
+    hatImage.className = 'card-img-top';
+    hatImage.src = hat.imageHref;
+    hatImage.alt = 'Image of baseball cap';
+    hatComponent2.appendChild(hatImage);
 
     // creates the the 4th <div> with class="card-body text-center"(nested within the 2nd <div> too)
-    div = document.getElementsByClassName('card my-3');
-    let newDiv4 = document.createElement('div');
-    newDiv4.className = 'card-body text-center';
-    newDiv2.appendChild(newDiv4);
+    prevComponent = document.getElementsByClassName('card my-3');
+    let hatComponent4 = document.createElement('div');
+    hatComponent4.className = 'card-body text-center';
+    hatComponent2.appendChild(hatComponent4);
 
     // creates the title <h5> (nested within the 4th <div> too)
-    div = document.getElementsByClassName('card-body text-center')
-    let newTitle = document.createElement('h5');
-    newTitle.className = 'card-title';
-    newTitle.textContent = hats.name;
-    newDiv4.appendChild(newTitle);
+    prevComponent = document.getElementsByClassName('card-body text-center')
+    let hatTitle = document.createElement('h5');
+    hatTitle.className = 'card-title';
+    hatTitle.textContent = hat.name;
+    hatComponent4.appendChild(hatTitle);
 
     // creates the paragraph <p>
-    div = document.getElementsByClassName('card-body text-center');
+    prevComponent = document.getElementsByClassName('card-body text-center');
     let newPe = document.createElement('p');
     newPe.className = 'card-text';
     newPe.textContent = 'Color: ';
     let em = document.createElement('em');
-    em.textContent = hats.color;
+    em.textContent = hat.color;
     newPe.appendChild(em);
-    newDiv4.appendChild(newPe);
+    hatComponent4.appendChild(newPe);
 
     // creates the button "Add to wishlist!"
-    div = document.getElementsByClassName('card-body text-center')
+    prevComponent = document.getElementsByClassName('card-body text-center')
     let newButton = document.createElement('button');
     newButton.className = 'btn btn-outline-primary';
     newButton.textContent = 'Add to wishlist!';
-    newDiv4.appendChild(newButton);
+    hatComponent4.appendChild(newButton);
 }
 
-for (let i = 0; i < hats.length; i++) {
-    displayHat(hats[i]);
+for (let i = 0; i < hat.length; i++) {
+    displayHat(hat[i]);
 };
 
 // Filter by color
@@ -128,9 +128,10 @@ function filterHatsByColor(clickedIndex) {
     for (let j = 0; j < hideElements.length; j++) {
         hideElements[j].style.display = "none";
         // displays the filtered color of the hats
-        if (hideElements[j].className == "accessory col-sm-4 " + buttons[clickedIndex].textContent.toLowerCase()) {
+        if (hideElements[j].className == "accessory col-sm-4" + buttons[clickedIndex].textContent.toLowerCase()) {
             hideElements[j].style.display = "block";
         }
+        // displays again all hats if pressd on "all" button
         if (buttons[clickedIndex].textContent.toLowerCase() == "all") {
             hideElements[j].style.display = "block";
         }

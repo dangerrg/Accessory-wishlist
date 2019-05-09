@@ -1,6 +1,6 @@
-// Creates Hat object
+// Creates Accessory object
 
-let hat = {
+let accessory = {
     name: "name",
     price: "price",
     color: "color",
@@ -10,107 +10,107 @@ let hat = {
     }
 };
 
-// console.log(hat.toString()); // test the function
+// console.log(accessory.toString()); // test the function
 
 // Object Constructor function
 
-function Hat(name, price, color, imageHref) {
+function Accessory(name, price, color, imageHref) {
     this.name = name;
     this.price = price;
     this.color = color;
     this.imageHref = imageHref;
 }
 
-Hat.prototype.toString = function() {
+Accessory.prototype.toString = function() {
     return "name: " + this.name + ", price: " + this.price + " , color: " + this.color + " , image: " + this.imageHref;
 };
 
-const hats = []; // The global variable that store the hats array.
+const accessories = []; // The global variable that store the accessories array.
 // Baseball caps
-let capRed = new Hat("Baseball Cap", 11.99, "red", "./assets/images/red/hats/1.png");
-let capBlue = new Hat("Baseball Cap", 11.99, "blue", "./assets/images/blue/hats/1.png");
-let capYellow = new Hat("Baseball Cap", 11.99, "yellow", "./assets/images/yellow/hats/1.png");
-let capGreen = new Hat("Baseball Cap", 11.99, "green", "./assets/images/green/hats/1.png");
+let capRed = new Accessory("Baseball Cap", 11.99, "red", "./assets/images/red/hats/1.png");
+let capBlue = new Accessory("Baseball Cap", 11.99, "blue", "./assets/images/blue/hats/1.png");
+let capYellow = new Accessory("Baseball Cap", 11.99, "yellow", "./assets/images/yellow/hats/1.png");
+let capGreen = new Accessory("Baseball Cap", 11.99, "green", "./assets/images/green/hats/1.png");
 
 // Beanies
-let beanieR = new Hat("Beanie", 17.99, "red", "./assets/images/red/hats/2.png");
-let beanieB = new Hat("Beanie", 17.99, "blue", "./assets/images/blue/hats/2.png");
-let beanieG = new Hat("Beanie", 17.99, "green", "./assets/images/green/hats/2.png");
+let beanieR = new Accessory("Beanie", 17.99, "red", "./assets/images/red/hats/2.png");
+let beanieB = new Accessory("Beanie", 17.99, "blue", "./assets/images/blue/hats/2.png");
+let beanieG = new Accessory("Beanie", 17.99, "green", "./assets/images/green/hats/2.png");
 
 // Straws
-let strawY = new Hat("Straw Hat", 10.99, "yellow", "./assets/images/yellow/hats/3.png");
-let strawB = new Hat("Straw Hat", 10.99, "blue", "./assets/images/blue/hats/3.png");
+let strawY = new Accessory("Straw Hat", 10.99, "yellow", "./assets/images/yellow/hats/3.png");
+let strawB = new Accessory("Straw Hat", 10.99, "blue", "./assets/images/blue/hats/3.png");
 
 // Trilbies
-let trilbyR = new Hat("Trilby", 10.99, "red", "./assets/images/red/hats/4.png");
-let trilbyB = new Hat("Trilby", 10.99, "blue", "./assets/images/blue/hats/4.png");
-let trilbyY = new Hat("Trilby", 10.99, "yellow", "./assets/images/yellow/hats/4.png");
+let trilbyR = new Accessory("Trilby", 10.99, "red", "./assets/images/red/hats/4.png");
+let trilbyB = new Accessory("Trilby", 10.99, "blue", "./assets/images/blue/hats/4.png");
+let trilbyY = new Accessory("Trilby", 10.99, "yellow", "./assets/images/yellow/hats/4.png");
 
-hats.push(capRed, capBlue, capYellow, capGreen, beanieR, beanieB, beanieG, strawY, strawB, trilbyR, trilbyB, trilbyY);
+accessories.push(capRed, capBlue, capYellow, capGreen, beanieR, beanieB, beanieG, strawY, strawB, trilbyR, trilbyB, trilbyY);
 
-// Defines the displayHat(hat) function that create a Hat object
-function displayHat(hat) {
+// Defines the displayAccessory(accessories) function that create a Accessory object
+function displayAccessory(accessories) {
     // creates the 1st <div> with class="accessory col-sm-4"
     let parentProducts = document.querySelector('#products'); // (this is the container)
-    let hatComponent = document.createElement('div');
-    hatComponent.className = 'accessory col-sm-4' + hat.color;
-    parentProducts.appendChild(hatComponent);
+    let accessoriesComponent = document.createElement('div');
+    accessoriesComponent.className = 'accessory col-sm-4' + accessory.color;
+    parentProducts.appendChild(accessoriesComponent);
 
     // creates the 2nd <div> with class="card my-3" (nested within the 1st <div>)
     let prevComponent = document.getElementsByClassName('accessory col-sm-4');
-    let hatCard = document.createElement('div');
-    hatCard.className = 'card my-3';
-    hatComponent.appendChild(hatCard);
+    let accessoriesCard = document.createElement('div');
+    accessoriesCard.className = 'card my-3';
+    accessoriesComponent.appendChild(accessoriesCard);
     // console.log(prevComponent);
 
     // creates the 3rd <div> with class="currency btn btn-light disabled" (nested within the 2nd <div>)
     prevComponent = document.getElementsByClassName('card my-3');
-    let hatCurrency = document.createElement('div');
-    hatCurrency.className = 'currency btn btn-light disabled';
-    hatCurrency.textContent = hat.price;
-    hatCard.appendChild(hatCurrency);
+    let accessoriesCurrency = document.createElement('div');
+    accessoriesCurrency.className = 'currency btn btn-light disabled';
+    accessoriesCurrency.textContent = accessory.price;
+    accessoriesCard.appendChild(accessoriesCurrency);
 
     // creates the <img> (nested also within the 2nd <div>)
     prevComponent = document.getElementsByClassName('currency btn btn-light disabled');
-    let hatImage = document.createElement('img');
-    hatImage.className = 'card-img-top';
-    hatImage.src = hat.imageHref;
-    hatImage.alt = 'Image of baseball cap';
-    hatCard.appendChild(hatImage);
+    let accessoriesImage = document.createElement('img');
+    accessoriesImage.className = 'card-img-top';
+    accessoriesImage.src = accessory.imageHref;
+    accessoriesImage.alt = 'Image of baseball cap';
+    accessoriesCard.appendChild(accessoriesImage);
 
     // creates the the 4th <div> with class="card-body text-center"(nested within the 2nd <div> too)
     prevComponent = document.getElementsByClassName('card my-3');
-    let hatBody = document.createElement('div');
-    hatBody.className = 'card-body text-center';
-    hatCard.appendChild(hatBody);
+    let accessoriesBody = document.createElement('div');
+    accessoriesBody.className = 'card-body text-center';
+    accessoriesCard.appendChild(accessoriesBody);
 
     // creates the title <h5> (nested within the 4th <div> too)
     prevComponent = document.getElementsByClassName('card-body text-center')
-    let hatTitle = document.createElement('h5');
-    hatTitle.className = 'card-title';
-    hatTitle.textContent = hat.name;
-    hatBody.appendChild(hatTitle);
+    let accessoriesTitle = document.createElement('h5');
+    accessoriesTitle.className = 'card-title';
+    accessoriesTitle.textContent = accessory.name;
+    accessoriesBody.appendChild(accessoriesTitle);
 
     // creates the paragraph <p>
     prevComponent = document.getElementsByClassName('card-body text-center');
-    let hatText = document.createElement('p');
-    hatText.className = 'card-text';
-    hatText.textContent = 'Color: ';
+    let accessoriesText = document.createElement('p');
+    accessoriesText.className = 'card-text';
+    accessoriesText.textContent = 'Color: ';
     let em = document.createElement('em');
-    em.textContent = hat.color;
-    hatText.appendChild(em);
-    hatBody.appendChild(hatText);
+    em.textContent = accessory.color;
+    accessoriesText.appendChild(em);
+    accessoriesBody.appendChild(accessoriesText);
 
     // creates the button "Add to wishlist!"
     prevComponent = document.getElementsByClassName('card-body text-center')
-    let hatButton = document.createElement('button');
-    hatButton.className = 'btn btn-outline-primary';
-    hatButton.textContent = 'Add to wishlist!';
-    hatBody.appendChild(hatButton);
+    let accessoriesButton = document.createElement('button');
+    accessoriesButton.className = 'btn btn-outline-primary';
+    accessoriesButton.textContent = 'Add to wishlist!';
+    accessoriesBody.appendChild(accessoriesButton);
 }
 
-for (let i = 0; i < hats.length; i++) {
-    displayHat(hats[i]);
+for (let i = 0; i < accessories.length; i++) {
+    displayAccessory(accessories[i]);
 };
 
 // Filter by color
@@ -122,16 +122,16 @@ function highlightSelectedFilter(clickedIndex) {
     buttons[clickedIndex].className += " active";
 }
 
-function filterHatsByColor(clickedIndex) {
-    //hides all hats-elements
+function filterAccessorysByColor(clickedIndex) {
+    //hides all accessories-elements
     let hideElements = document.getElementsByClassName('accessory');
     for (let j = 0; j < hideElements.length; j++) {
         hideElements[j].style.display = "none";
-        // displays the filtered color of the hats
+        // displays the filtered color of the accessories
         if (hideElements[j].className == "accessory col-sm-4" + buttons[clickedIndex].textContent.toLowerCase()) {
             hideElements[j].style.display = "block";
         }
-        // displays again all hats if pressd on "all" button
+        // displays again all accessories if pressd on "all" button
         if (buttons[clickedIndex].textContent.toLowerCase() == "all") {
             hideElements[j].style.display = "block";
         }
@@ -140,10 +140,10 @@ function filterHatsByColor(clickedIndex) {
 
 // Get and store all the buttons in a variable
 let buttons = document.getElementsByClassName('btn-group')[0].getElementsByClassName('btn btn-outline-secondary');
-// add an addEventListener to all buttons and intiates the highlightSelectedFilter and filterHatsByColor functions
+// add an addEventListener to all buttons and intiates the highlightSelectedFilter and filterAccessoriesByColor functions
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function() {
         highlightSelectedFilter([i]);
-        filterHatsByColor([i]);
+        filterAccessoriesByColor([i]);
     })
 };

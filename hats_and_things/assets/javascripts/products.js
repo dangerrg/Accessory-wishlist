@@ -25,7 +25,7 @@ Hat.prototype.toString = function() {
     return "name: " + this.name + ", price: " + this.price + " , color: " + this.color + " , image: " + this.imageHref;
 };
 
-hat = []; // The global variable that store the hats array.
+const hats = []; // The global variable that store the hats array.
 // Baseball caps
 let capRed = new Hat("Baseball Cap", 11.99, "red", "./assets/images/red/hats/1.png");
 let capBlue = new Hat("Baseball Cap", 11.99, "blue", "./assets/images/blue/hats/1.png");
@@ -46,7 +46,7 @@ let trilbyR = new Hat("Trilby", 10.99, "red", "./assets/images/red/hats/4.png");
 let trilbyB = new Hat("Trilby", 10.99, "blue", "./assets/images/blue/hats/4.png");
 let trilbyY = new Hat("Trilby", 10.99, "yellow", "./assets/images/yellow/hats/4.png");
 
-hat.push(capRed, capBlue, capYellow, capGreen, beanieR, beanieB, beanieG, strawY, strawB, trilbyR, trilbyB, trilbyY);
+hats.push(capRed, capBlue, capYellow, capGreen, beanieR, beanieB, beanieG, strawY, strawB, trilbyR, trilbyB, trilbyY);
 
 // Defines the displayHat(hat) function that create a Hat object
 function displayHat(hat) {
@@ -58,9 +58,9 @@ function displayHat(hat) {
 
     // creates the 2nd <div> with class="card my-3" (nested within the 1st <div>)
     let prevComponent = document.getElementsByClassName('accessory col-sm-4');
-    let hatComponent2 = document.createElement('div');
-    hatComponent2.className = 'card my-3';
-    hatComponent.appendChild(hatComponent2);
+    let hatCard = document.createElement('div');
+    hatCard.className = 'card my-3';
+    hatComponent.appendChild(hatCard);
     // console.log(prevComponent);
 
     // creates the 3rd <div> with class="currency btn btn-light disabled" (nested within the 2nd <div>)
@@ -68,7 +68,7 @@ function displayHat(hat) {
     let hatCurrency = document.createElement('div');
     hatCurrency.className = 'currency btn btn-light disabled';
     hatCurrency.textContent = hat.price;
-    hatComponent2.appendChild(hatCurrency);
+    hatCard.appendChild(hatCurrency);
 
     // creates the <img> (nested also within the 2nd <div>)
     prevComponent = document.getElementsByClassName('currency btn btn-light disabled');
@@ -76,41 +76,41 @@ function displayHat(hat) {
     hatImage.className = 'card-img-top';
     hatImage.src = hat.imageHref;
     hatImage.alt = 'Image of baseball cap';
-    hatComponent2.appendChild(hatImage);
+    hatCard.appendChild(hatImage);
 
     // creates the the 4th <div> with class="card-body text-center"(nested within the 2nd <div> too)
     prevComponent = document.getElementsByClassName('card my-3');
-    let hatComponent4 = document.createElement('div');
-    hatComponent4.className = 'card-body text-center';
-    hatComponent2.appendChild(hatComponent4);
+    let hatBody = document.createElement('div');
+    hatBody.className = 'card-body text-center';
+    hatCard.appendChild(hatBody);
 
     // creates the title <h5> (nested within the 4th <div> too)
     prevComponent = document.getElementsByClassName('card-body text-center')
     let hatTitle = document.createElement('h5');
     hatTitle.className = 'card-title';
     hatTitle.textContent = hat.name;
-    hatComponent4.appendChild(hatTitle);
+    hatBody.appendChild(hatTitle);
 
     // creates the paragraph <p>
     prevComponent = document.getElementsByClassName('card-body text-center');
-    let newPe = document.createElement('p');
-    newPe.className = 'card-text';
-    newPe.textContent = 'Color: ';
+    let hatText = document.createElement('p');
+    hatText.className = 'card-text';
+    hatText.textContent = 'Color: ';
     let em = document.createElement('em');
     em.textContent = hat.color;
-    newPe.appendChild(em);
-    hatComponent4.appendChild(newPe);
+    hatText.appendChild(em);
+    hatBody.appendChild(hatText);
 
     // creates the button "Add to wishlist!"
     prevComponent = document.getElementsByClassName('card-body text-center')
-    let newButton = document.createElement('button');
-    newButton.className = 'btn btn-outline-primary';
-    newButton.textContent = 'Add to wishlist!';
-    hatComponent4.appendChild(newButton);
+    let hatButton = document.createElement('button');
+    hatButton.className = 'btn btn-outline-primary';
+    hatButton.textContent = 'Add to wishlist!';
+    hatBody.appendChild(hatButton);
 }
 
-for (let i = 0; i < hat.length; i++) {
-    displayHat(hat[i]);
+for (let i = 0; i < hats.length; i++) {
+    displayHat(hats[i]);
 };
 
 // Filter by color

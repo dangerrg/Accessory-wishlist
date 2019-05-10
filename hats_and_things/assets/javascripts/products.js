@@ -59,7 +59,7 @@ function displayAccessory(accessory) {
     let accessoryCard = document.createElement('div');
     accessoryCard.className = 'card my-3';
     accessoryComponent.appendChild(accessoryCard);
-    // console.log(prevComponent);
+    console.log(prevComponent);
 
     // creates the 3rd <div> with class="currency btn btn-light disabled" (nested within the 2nd <div>)
     prevComponent = document.getElementsByClassName('card my-3');
@@ -73,7 +73,7 @@ function displayAccessory(accessory) {
     let accessoryImage = document.createElement('img');
     accessoryImage.className = 'card-img-top';
     accessoryImage.src = accessory.imageHref;
-    accessoryImage.alt = 'Image of baseball cap';
+    accessoryImage.alt = "Image of " + accessory.name;
     accessoryCard.appendChild(accessoryImage);
 
     // creates the the 4th <div> with class="card-body text-center"(nested within the 2nd <div> too)
@@ -83,7 +83,7 @@ function displayAccessory(accessory) {
     accessoryCard.appendChild(accessoryBody);
 
     // creates the title <h5> (nested within the 4th <div> too)
-    prevComponent = document.getElementsByClassName('card-body text-center')
+    prevComponent = document.getElementsByClassName('card-body text-center');
     let accessoryTitle = document.createElement('h5');
     accessoryTitle.className = 'card-title';
     accessoryTitle.textContent = accessory.name;
@@ -100,7 +100,7 @@ function displayAccessory(accessory) {
     accessoryBody.appendChild(accessoryText);
 
     // creates the button "Add to wishlist!"
-    prevComponent = document.getElementsByClassName('card-body text-center')
+    prevComponent = document.getElementsByClassName('card-body text-center');
     let accessoryButton = document.createElement('button');
     accessoryButton.className = 'btn btn-outline-primary';
     accessoryButton.textContent = 'Add to wishlist!';
@@ -120,7 +120,7 @@ function highlightSelectedFilter(clickedIndex) {
     buttons[clickedIndex].className += " active";
 }
 
-function filterAccessorysByColor(clickedIndex) {
+function filterAccessoriesByColor(clickedIndex) {
     //hides all accessories-elements
     let hideElements = document.getElementsByClassName('accessory');
     for (let j = 0; j < hideElements.length; j++) {
@@ -144,5 +144,51 @@ for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function() {
         highlightSelectedFilter([i]);
         filterAccessoriesByColor([i]);
+    })
+};
+
+// Socks and sunglasses
+
+function loadRemoteAccessories(clickedIndex) {
+
+    // remove the Accessory HTML components
+    prevComponent = document.getElementsByClassName("accessory col-sm-4");
+    console.log(prevComponent);
+
+    // delete accessories array
+    for (let i = accessories.length - 1; i >= 0; i--) {
+        prevComponent[i].parentNode.removeChild(prevComponent[i]);
+        accessories.splice(i, 1);
+    };
+
+    // Grab the categorries
+    let category = navButtons[clickedIndex].textContent.toLowerCase();
+    fetch(String(category) + ".json")
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(json) {
+            if (category === "socks") {
+                for (let i = 0; i < json.socks.length; i++) {
+                    accessories.push(json.socks[i]);
+                    displayAccessory(accessories[i]);
+                }
+            } else if (category === "sunglasses") {
+                for (let i = 0; i < json.sunglasses.length; i++) {
+                    accessories.push(json.sunglasses[i]);
+                    displayAccessory(accessories[i]);
+                }
+            }
+        });
+}
+
+// Get the navigation buttons Accessories, Socks and Sunglasses
+let navButtons = document.getElementsByClassName('nav-link btn btn-outline-secondary mr-3');
+// console.log(navButtons); // Logs HTMLCollection with the 3 buttons 
+
+// add an addEventListener to the buttons and intiates the loadRemoteAccessories function
+for (let i = 0; i < navButtons.length; i++) {
+    navButtons[i].addEventListener('click', function() {
+        loadRemoteAccessories([i]);
     })
 };

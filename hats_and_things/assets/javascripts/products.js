@@ -26,21 +26,19 @@ Accessory.prototype.toString = function() {
 };
 
 const accessories = []; // The global variable that store the accessories array.
+// Creates the 12 accessories as stated in the static html page.
 // Baseball caps
 let capRed = new Accessory("Baseball Cap", 11.99, "red", "./assets/images/red/hats/1.png");
 let capBlue = new Accessory("Baseball Cap", 11.99, "blue", "./assets/images/blue/hats/1.png");
 let capYellow = new Accessory("Baseball Cap", 11.99, "yellow", "./assets/images/yellow/hats/1.png");
 let capGreen = new Accessory("Baseball Cap", 11.99, "green", "./assets/images/green/hats/1.png");
-
 // Beanies
 let beanieR = new Accessory("Beanie", 17.99, "red", "./assets/images/red/hats/2.png");
 let beanieB = new Accessory("Beanie", 17.99, "blue", "./assets/images/blue/hats/2.png");
 let beanieG = new Accessory("Beanie", 17.99, "green", "./assets/images/green/hats/2.png");
-
 // Straws
 let strawY = new Accessory("Straw Hat", 10.99, "yellow", "./assets/images/yellow/hats/3.png");
 let strawB = new Accessory("Straw Hat", 10.99, "blue", "./assets/images/blue/hats/3.png");
-
 // Trilbies
 let trilbyR = new Accessory("Trilby", 10.99, "red", "./assets/images/red/hats/4.png");
 let trilbyB = new Accessory("Trilby", 10.99, "blue", "./assets/images/blue/hats/4.png");
@@ -48,65 +46,65 @@ let trilbyY = new Accessory("Trilby", 10.99, "yellow", "./assets/images/yellow/h
 
 accessories.push(capRed, capBlue, capYellow, capGreen, beanieR, beanieB, beanieG, strawY, strawB, trilbyR, trilbyB, trilbyY);
 
-// Defines the displayAccessory(accessories) function that create a Accessory object
+// Defines the displayAccessory(accessory) function that create a Accessory object
 function displayAccessory(accessory) {
     // creates the 1st <div> with class="accessory col-sm-4"
     let parentProducts = document.querySelector('#products'); // (this is the container)
-    let accessoriesComponent = document.createElement('div');
-    accessoriesComponent.className = 'accessory col-sm-4' + accessory.color;
-    parentProducts.appendChild(accessoriesComponent);
+    let accessoryComponent = document.createElement('div');
+    accessoryComponent.className = 'accessory col-sm-4' + accessory.color;
+    parentProducts.appendChild(accessoryComponent);
 
     // creates the 2nd <div> with class="card my-3" (nested within the 1st <div>)
     let prevComponent = document.getElementsByClassName('accessory col-sm-4');
-    let accessoriesCard = document.createElement('div');
-    accessoriesCard.className = 'card my-3';
-    accessoriesComponent.appendChild(accessoriesCard);
+    let accessoryCard = document.createElement('div');
+    accessoryCard.className = 'card my-3';
+    accessoryComponent.appendChild(accessoryCard);
     // console.log(prevComponent);
 
     // creates the 3rd <div> with class="currency btn btn-light disabled" (nested within the 2nd <div>)
     prevComponent = document.getElementsByClassName('card my-3');
-    let accessoriesCurrency = document.createElement('div');
-    accessoriesCurrency.className = 'currency btn btn-light disabled';
-    accessoriesCurrency.textContent = accessory.price;
-    accessoriesCard.appendChild(accessoriesCurrency);
+    let accessoryCurrency = document.createElement('div');
+    accessoryCurrency.className = 'currency btn btn-light disabled';
+    accessoryCurrency.textContent = accessory.price;
+    accessoryCard.appendChild(accessoryCurrency);
 
     // creates the <img> (nested also within the 2nd <div>)
     prevComponent = document.getElementsByClassName('currency btn btn-light disabled');
-    let accessoriesImage = document.createElement('img');
-    accessoriesImage.className = 'card-img-top';
-    accessoriesImage.src = accessory.imageHref;
-    accessoriesImage.alt = 'Image of baseball cap';
-    accessoriesCard.appendChild(accessoriesImage);
+    let accessoryImage = document.createElement('img');
+    accessoryImage.className = 'card-img-top';
+    accessoryImage.src = accessory.imageHref;
+    accessoryImage.alt = 'Image of baseball cap';
+    accessoryCard.appendChild(accessoryImage);
 
     // creates the the 4th <div> with class="card-body text-center"(nested within the 2nd <div> too)
     prevComponent = document.getElementsByClassName('card my-3');
-    let accessoriesBody = document.createElement('div');
-    accessoriesBody.className = 'card-body text-center';
-    accessoriesCard.appendChild(accessoriesBody);
+    let accessoryBody = document.createElement('div');
+    accessoryBody.className = 'card-body text-center';
+    accessoryCard.appendChild(accessoryBody);
 
     // creates the title <h5> (nested within the 4th <div> too)
     prevComponent = document.getElementsByClassName('card-body text-center')
-    let accessoriesTitle = document.createElement('h5');
-    accessoriesTitle.className = 'card-title';
-    accessoriesTitle.textContent = accessory.name;
-    accessoriesBody.appendChild(accessoriesTitle);
+    let accessoryTitle = document.createElement('h5');
+    accessoryTitle.className = 'card-title';
+    accessoryTitle.textContent = accessory.name;
+    accessoryBody.appendChild(accessoryTitle);
 
     // creates the paragraph <p>
     prevComponent = document.getElementsByClassName('card-body text-center');
-    let accessoriesText = document.createElement('p');
-    accessoriesText.className = 'card-text';
-    accessoriesText.textContent = 'Color: ';
+    let accessoryText = document.createElement('p');
+    accessoryText.className = 'card-text';
+    accessoryText.textContent = 'Color: ';
     let em = document.createElement('em');
     em.textContent = accessory.color;
-    accessoriesText.appendChild(em);
-    accessoriesBody.appendChild(accessoriesText);
+    accessoryText.appendChild(em);
+    accessoryBody.appendChild(accessoryText);
 
     // creates the button "Add to wishlist!"
     prevComponent = document.getElementsByClassName('card-body text-center')
-    let accessoriesButton = document.createElement('button');
-    accessoriesButton.className = 'btn btn-outline-primary';
-    accessoriesButton.textContent = 'Add to wishlist!';
-    accessoriesBody.appendChild(accessoriesButton);
+    let accessoryButton = document.createElement('button');
+    accessoryButton.className = 'btn btn-outline-primary';
+    accessoryButton.textContent = 'Add to wishlist!';
+    accessoryBody.appendChild(accessoryButton);
 }
 
 for (let i = 0; i < accessories.length; i++) {
@@ -127,6 +125,7 @@ function filterAccessoriesByColor(clickedIndex) {
     let hideElements = document.getElementsByClassName('accessory');
     for (let j = 0; j < hideElements.length; j++) {
         hideElements[j].style.display = "none";
+
         // displays the filtered color of the accessories
         if (hideElements[j].className == "accessory col-sm-4" + buttons[clickedIndex].textContent.toLowerCase()) {
             hideElements[j].style.display = "block";

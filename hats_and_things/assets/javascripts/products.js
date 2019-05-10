@@ -46,13 +46,8 @@ let trilbyY = new Accessory("Trilby", 10.99, "yellow", "./assets/images/yellow/h
 
 accessories.push(capRed, capBlue, capYellow, capGreen, beanieR, beanieB, beanieG, strawY, strawB, trilbyR, trilbyB, trilbyY);
 
-<<<<<<< HEAD
 // Defines the displayAccessory(accessory) function that create a Accessory object
 function displayAccessory(accessory) {
-=======
-// Defines the displayAccessory(accessories) function that create a Accessory object
-function displayAccessory(accessories) {
->>>>>>> parent of d88428f... Minor corrections
     // creates the 1st <div> with class="accessory col-sm-4"
     let parentProducts = document.querySelector('#products'); // (this is the container)
     let accessoryComponent = document.createElement('div');

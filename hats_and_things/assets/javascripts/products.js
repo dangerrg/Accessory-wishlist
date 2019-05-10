@@ -49,7 +49,7 @@ let trilbyY = new Accessory("Trilby", 10.99, "yellow", "./assets/images/yellow/h
 accessories.push(capRed, capBlue, capYellow, capGreen, beanieR, beanieB, beanieG, strawY, strawB, trilbyR, trilbyB, trilbyY);
 
 // Defines the displayAccessory(accessories) function that create a Accessory object
-function displayAccessory(accessories) {
+function displayAccessory(accessory) {
     // creates the 1st <div> with class="accessory col-sm-4"
     let parentProducts = document.querySelector('#products'); // (this is the container)
     let accessoriesComponent = document.createElement('div');
@@ -122,7 +122,7 @@ function highlightSelectedFilter(clickedIndex) {
     buttons[clickedIndex].className += " active";
 }
 
-function filterAccessorysByColor(clickedIndex) {
+function filterAccessoriesByColor(clickedIndex) {
     //hides all accessories-elements
     let hideElements = document.getElementsByClassName('accessory');
     for (let j = 0; j < hideElements.length; j++) {

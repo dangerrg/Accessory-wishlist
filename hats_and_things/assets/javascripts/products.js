@@ -51,11 +51,11 @@ function displayAccessory(accessory) {
     // creates the 1st <div> with class="accessory col-sm-4"
     let parentProducts = document.querySelector('#products'); // (this is the container)
     let accessoryComponent = document.createElement('div');
-    accessoryComponent.className = 'accessory col-sm-4' + accessory.color;
+    accessoryComponent.className = 'accessory col-sm-4 ' + accessory.color;
     parentProducts.appendChild(accessoryComponent);
 
     // creates the 2nd <div> with class="card my-3" (nested within the 1st <div>)
-    let prevComponent = document.getElementsByClassName('accessory col-sm-4');
+    let prevComponent = document.getElementsByClassName('accessory col-sm-4 ');
     let accessoryCard = document.createElement('div');
     accessoryCard.className = 'card my-3';
     accessoryComponent.appendChild(accessoryCard);
@@ -127,7 +127,7 @@ function filterAccessoriesByColor(clickedIndex) {
         hideElements[j].style.display = "none";
 
         // displays the filtered color of the accessories
-        if (hideElements[j].className == "accessory col-sm-4" + buttons[clickedIndex].textContent.toLowerCase()) {
+        if (hideElements[j].className == "accessory col-sm-4 " + buttons[clickedIndex].textContent.toLowerCase()) {
             hideElements[j].style.display = "block";
         }
         // displays again all accessories if pressd on "all" button

@@ -162,16 +162,25 @@ function loadRemoteAccessories(clickedIndex) {
 
     // Grab the categories
     let category = navButtons[clickedIndex].textContent.toLowerCase();
-    fetch(String(category) + ".json")
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(json) {
-            for (let i = 0; i < json.length; i++) {
-                accessories.push(json[i]);
-                displayAccessory(accessories[i]);
-            }
-        });
+    // display all of the hats if hats button is clicked
+    if (category === "hats") {
+        accessories.push(capRed, capBlue, capYellow, capGreen, beanieR, beanieB, beanieG, strawY, strawB, trilbyR, trilbyB, trilbyY);
+        for (let i = 0; i < 12; i++) {
+            displayAccessory(accessories[i]);
+        }
+        // display JSON file content depending the accessories'category
+    } else {
+        fetch(String(category) + ".json")
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(json) {
+                for (let i = 0; i < json.length; i++) {
+                    accessories.push(json[i]);
+                    displayAccessory(accessories[i]);
+                }
+            });
+    }
 }
 
 // Get the navigation buttons Accessories, Socks and Sunglasses
@@ -182,19 +191,5 @@ let navButtons = document.getElementsByClassName('nav-link btn btn-outline-secon
 for (let i = 0; i < navButtons.length; i++) {
     navButtons[i].addEventListener('click', function() {
         loadRemoteAccessories([i]);
-    })
-};
-
-for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function displayHats() {
-
-        let category = navButtons[clickedIndex].textContent.toLowerCase();
-        // display hats if hats is clicked
-        if (category === "hats") {
-            accessories.push(capRed, capBlue, capYellow, capGreen, beanieR, beanieB, beanieG, strawY, strawB, trilbyR, trilbyB, trilbyY);
-            for (let i = 0; i < 12; i++) {
-                displayHats(accessories[i]);
-            }
-        }
     })
 };

@@ -59,7 +59,7 @@ function displayAccessory(accessory) {
     let accessoryCard = document.createElement('div');
     accessoryCard.className = 'card my-3';
     accessoryComponent.appendChild(accessoryCard);
-    console.log(prevComponent);
+    // console.log(prevComponent);
 
     // creates the 3rd <div> with class="currency btn btn-light disabled" (nested within the 2nd <div>)
     prevComponent = document.getElementsByClassName('card my-3');
@@ -153,7 +153,6 @@ function loadRemoteAccessories(clickedIndex) {
 
     // remove the Accessory HTML components
     prevComponent = document.getElementsByClassName("accessory col-sm-4");
-    console.log(prevComponent);
 
     // delete accessories array
     for (let i = accessories.length - 1; i >= 0; i--) {
@@ -161,23 +160,16 @@ function loadRemoteAccessories(clickedIndex) {
         accessories.splice(i, 1);
     };
 
-    // Grab the categorries
+    // Grab the categories
     let category = navButtons[clickedIndex].textContent.toLowerCase();
     fetch(String(category) + ".json")
         .then(function(response) {
             return response.json();
         })
         .then(function(json) {
-            if (category === "socks") {
-                for (let i = 0; i < json.socks.length; i++) {
-                    accessories.push(json.socks[i]);
-                    displayAccessory(accessories[i]);
-                }
-            } else if (category === "sunglasses") {
-                for (let i = 0; i < json.sunglasses.length; i++) {
-                    accessories.push(json.sunglasses[i]);
-                    displayAccessory(accessories[i]);
-                }
+            for (let i = 0; i < json.length; i++) {
+                accessories.push(json[i]);
+                displayAccessory(accessories[i]);
             }
         });
 }
@@ -190,5 +182,19 @@ let navButtons = document.getElementsByClassName('nav-link btn btn-outline-secon
 for (let i = 0; i < navButtons.length; i++) {
     navButtons[i].addEventListener('click', function() {
         loadRemoteAccessories([i]);
+    })
+};
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function displayHats() {
+
+        let category = navButtons[clickedIndex].textContent.toLowerCase();
+        // display hats if hats is clicked
+        if (category === "hats") {
+            accessories.push(capRed, capBlue, capYellow, capGreen, beanieR, beanieB, beanieG, strawY, strawB, trilbyR, trilbyB, trilbyY);
+            for (let i = 0; i < 12; i++) {
+                displayHats(accessories[i]);
+            }
+        }
     })
 };

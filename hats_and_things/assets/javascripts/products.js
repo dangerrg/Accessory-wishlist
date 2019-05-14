@@ -199,7 +199,16 @@ for (let i = 0; i < navButtons.length; i++) {
 
 // This function stores the accessory1 in local storage 
 function addToWishList(accessory) {
-    let accessory1asJson = JSON.stringify(accessory);
-    localStorage.setItem('accessory1', accessory1asJson);
-    console.log(accessory1asJson);
+    if (localStorage.getItem('accessory1') === null) {
+        let accessory1asJson = JSON.stringify(accessory);
+        localStorage.setItem('accessory1', accessory1asJson);
+    } else if (localStorage.getItem('accessory2') === null) {
+        let accessory2asJson = JSON.stringify(accessory);
+        localStorage.setItem('accessory2', accessory2asJson);
+    } else if (localStorage.getItem('accessory3') === null) {
+        let accessory3asJson = JSON.stringify(accessory);
+        localStorage.setItem('accessory3', accessory3asJson);
+    } else {
+        alert("ALERT: Your wishlist is full!\n\nSorry, up to 3 accessories only")
+    }
 }

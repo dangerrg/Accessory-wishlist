@@ -10,10 +10,10 @@ let accessory = {
     }
 };
 
-// console.log(accessory.toString()); // test the function
+// Ensures local storage is empty before adding any accessory
+localStorage.clear();
 
 // Object Constructor function
-
 function Accessory(name, price, color, imageHref) {
     this.name = name;
     this.price = price;

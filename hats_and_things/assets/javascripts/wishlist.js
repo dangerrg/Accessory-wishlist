@@ -69,13 +69,17 @@ function displayAccessory(accessory) {
     accessoryBody.appendChild(accessoryText);
 }
 
-function displayAccessoryBtnRemove() {
+// displays Remove object's button
+function displayAccessoryBtnRemove(index, key) {
     // creates the "Remove" button
     prevComponent = document.getElementsByClassName('card-body text-center');
     accessoryBody = prevComponent[prevComponent.length - 1];
     let accessoryButton = document.createElement('button');
     accessoryButton.className = 'btn btn-outline-danger';
     accessoryButton.textContent = 'Remove';
+    accessoryButton.addEventListener('click', function() { // binded function
+        removeFromWishList(index, key, 'accessory col-sm-4')
+    });
     accessoryBody.appendChild(accessoryButton);
 }
 
@@ -83,8 +87,16 @@ function displayAccessoryBtnRemove() {
 function displayWishlist() {
     for (let i = 0; i < storedItems.length; i++) {
         displayAccessory(storedItems[i])
-        displayAccessoryBtnRemove(storedItems[i])
+        displayAccessoryBtnRemove([i], 'accessory' + [Number(i) + 1])
     }
+}
+
+// Remove the stored accessories from the WishList when "Remove" is clicked
+function removeFromWishList(index, key, htmlComponent) {
+    let elem = document.getElementsByClassName(htmlComponent);
+    elem[index].parentNode.removeChild(elem[index]);
+    storedItems.splice([index], 1);
+    localStorage.removeItem(key);
 }
 
 // handles errors 

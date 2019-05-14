@@ -209,6 +209,6 @@ function addToWishList(accessory) {
         let accessory3asJson = JSON.stringify(accessory);
         localStorage.setItem('accessory3', accessory3asJson);
     } else {
-        alert("ALERT: Your wishlist is full!\n\nSorry, up to 3 accessories only")
+        alert("ALERT: Your wishlist is full!\n\nSorry, but your wishlist can only admit up to three accessories")
     }
 }

@@ -87,4 +87,9 @@ function displayWishlist() {
     }
 }
 
-displayWishlist();
+// handles errors 
+try {
+    displayWishlist();
+} catch (err) {
+    console.log("Something went wrong. Error: " + err + ".");
+}

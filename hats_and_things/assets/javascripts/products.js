@@ -195,8 +195,11 @@ for (let i = 0; i < navButtons.length; i++) {
     })
 };
 
-// WishList //
+// The wishlist 
 
+// This function stores the accessory1 in local storage 
 function addToWishList(accessory) {
-    console.log(accessory); // test the function
+    let accessory1asJson = JSON.stringify(accessory);
+    localStorage.setItem('accessory1', accessory1asJson);
+    console.log(accessory1asJson);
 }

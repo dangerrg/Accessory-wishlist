@@ -104,6 +104,7 @@ function displayAccessory(accessory) {
     let accessoryButton = document.createElement('button');
     accessoryButton.className = 'btn btn-outline-primary';
     accessoryButton.textContent = 'Add to wishlist!';
+    accessoryButton.addEventListener('click', function() { addToWishList(accessory) });
     accessoryBody.appendChild(accessoryButton);
 }
 
@@ -193,3 +194,9 @@ for (let i = 0; i < navButtons.length; i++) {
         loadRemoteAccessories([i]);
     })
 };
+
+// WishList //
+
+function addToWishList(accessory) {
+    console.log(accessory); // test the function
+}

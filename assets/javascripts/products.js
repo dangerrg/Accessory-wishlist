@@ -143,8 +143,8 @@ let buttons = document.getElementsByClassName('btn-group')[0].getElementsByClass
 // add an addEventListener to all buttons and intiates the highlightSelectedFilter and filterAccessoriesByColor functions
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function() {
-        highlightSelectedFilter([i]);
-        filterAccessoriesByColor([i]);
+        highlightSelectedFilter(i);
+        filterAccessoriesByColor(i);
     })
 };
 

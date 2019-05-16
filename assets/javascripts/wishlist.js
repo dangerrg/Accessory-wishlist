@@ -1,16 +1,12 @@
 // creates a function that gets the values from local storage as JSON-objects
 function getAccessories() {
     let storedItems = [];
-    for (let i = 1; i < 5; i++) {
-        // check if local storage has values, if yes convert them to JSON-objects
-        if (localStorage.getItem('accessory' + i) !== null) {
-            let stringValue = localStorage.getItem('accessory' + i);
-            let jsObject = JSON.parse(stringValue);
-            storedItems.push(jsObject);
-        } else {
-            return (storedItems);
-        }
+    for (let i = 0; i < localStorage.length; i++) {
+        let stringValue = localStorage.getItem('accessory' + (i + 1));
+        let jsObject = JSON.parse(stringValue);
+        storedItems.push(jsObject);
     }
+    return storedItems;
 }
 
 let storedItems = getAccessories();
@@ -88,19 +84,20 @@ function displayAccessoryBtnRemove(index, key) {
 function displayWishlist() {
     for (let i = 0; i < storedItems.length; i++) {
         displayAccessory(storedItems[i])
-        displayAccessoryBtnRemove(i, 'accessory' + (i))
-        console.log(storedItems.length);
+        displayAccessoryBtnRemove(i, 'accessory' + (i + 1))
+        console.log("Stored Item ", storedItems.length);
     }
 }
 
 // Remove the stored accessories from the WishList when "Remove" is clicked
 function removeFromWishList(index, key, htmlComponent) {
-    console.log(index);
+    console.log("Removed index " + index, ":" + key);
     let elem = document.getElementsByClassName(htmlComponent);
-    console.log(elem);
+    console.log("elements ", elem);
     elem[index].parentNode.removeChild(elem[index]);
     storedItems.splice(index, 1);
     localStorage.removeItem(key);
+    console.log("elem[index] ", elem[index]);
 }
 
 // handles errors 

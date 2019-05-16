@@ -3,8 +3,8 @@ function getAccessories() {
     let storedItems = [];
     for (let i = 1; i < 5; i++) {
         // check if local storage has values, if yes convert them to JSON-objects
-        if (localStorage.getItem('accessory' + [i]) !== null) {
-            let stringValue = localStorage.getItem('accessory' + [i]);
+        if (localStorage.getItem('accessory' + i) !== null) {
+            let stringValue = localStorage.getItem('accessory' + i);
             let jsObject = JSON.parse(stringValue);
             storedItems.push(jsObject);
         } else {
@@ -73,7 +73,7 @@ function displayAccessory(accessory) {
 function displayAccessoryBtnRemove(index, key) {
     // creates the "Remove" button
     prevComponent = document.getElementsByClassName('card-body text-center');
-    accessoryBody = prevComponent[prevComponent.length - 1];
+    accessoryBody = prevComponent[prevComponent.length - 1]; // Declares "accessoryBody" as parentNode of "accessoryButton"
     let accessoryButton = document.createElement('button');
     accessoryButton.className = 'btn btn-outline-danger';
     accessoryButton.textContent = 'Remove';
@@ -84,18 +84,22 @@ function displayAccessoryBtnRemove(index, key) {
 }
 
 // creates the displayWishlist() function
+// this function renders the added accessories on the wishlist.html page
 function displayWishlist() {
     for (let i = 0; i < storedItems.length; i++) {
         displayAccessory(storedItems[i])
-        displayAccessoryBtnRemove([i], 'accessory' + [Number(i) + 1])
+        displayAccessoryBtnRemove(i, 'accessory' + (i))
+        console.log(storedItems.length);
     }
 }
 
 // Remove the stored accessories from the WishList when "Remove" is clicked
 function removeFromWishList(index, key, htmlComponent) {
+    console.log(index);
     let elem = document.getElementsByClassName(htmlComponent);
+    console.log(elem);
     elem[index].parentNode.removeChild(elem[index]);
-    storedItems.splice([index], 1);
+    storedItems.splice(index, 1);
     localStorage.removeItem(key);
 }
 

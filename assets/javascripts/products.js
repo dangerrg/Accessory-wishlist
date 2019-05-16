@@ -156,7 +156,7 @@ function loadRemoteAccessories(clickedIndex) {
     prevComponent = document.getElementsByClassName("accessory col-sm-4");
 
     // delete accessories array
-    for (let i = accessories.length - 1; i >= 0; i--) {
+    for (let i = 0; i < accessories.length; i++) {
         prevComponent[i].parentNode.removeChild(prevComponent[i]);
         accessories.splice(i, 1);
     };
@@ -191,7 +191,7 @@ let navButtons = document.getElementsByClassName('nav-link btn btn-outline-secon
 // add an addEventListener to the buttons and intiates the loadRemoteAccessories function
 for (let i = 0; i < navButtons.length; i++) {
     navButtons[i].addEventListener('click', function() {
-        loadRemoteAccessories([i]);
+        loadRemoteAccessories(i);
     })
 };
 

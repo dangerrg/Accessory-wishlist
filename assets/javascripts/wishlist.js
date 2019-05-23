@@ -12,11 +12,12 @@ function getAccessories() {
 let storedItems = getAccessories();
 
 // Function that create an Accessory object
-function displayAccessory(accessory) {
+function displayAccessory(accessory, index) {
     // creates the 1st <div> with class="col-sm-4"
     let parentProducts = document.querySelector('#products'); // (this is the container)
     let accessoryComponent = document.createElement('div');
     accessoryComponent.className = 'accessory col-sm-4 ' + accessory.color;
+    accessoryComponent.dataset.accessoryKey = index;
     parentProducts.appendChild(accessoryComponent);
 
     // creates the 2nd <div> with class="card my-3" (nested within the 1st <div>)
@@ -63,41 +64,46 @@ function displayAccessory(accessory) {
     em.textContent = accessory.color;
     accessoryText.appendChild(em);
     accessoryBody.appendChild(accessoryText);
+    console.log("accessory ", accessory);
+
 }
 
-// displays Remove object's button
-function displayAccessoryBtnRemove(index, key) {
-    // creates the "Remove" button
-    prevComponent = document.getElementsByClassName('card-body text-center');
-    accessoryBody = prevComponent[prevComponent.length - 1]; // Declares "accessoryBody" as parentNode of "accessoryButton"
-    let accessoryButton = document.createElement('button');
+function displayAccessoryBtnRemove(index) {
+
+    const cards = document.querySelectorAll('.card-body');
+    const accessoryButton = document.createElement('button');
+    accessoryButton.dataset.accessoryKey = index + 1;
     accessoryButton.className = 'btn btn-outline-danger';
     accessoryButton.textContent = 'Remove';
-    accessoryButton.addEventListener('click', function() { // binded function
-        removeFromWishList(index, key, 'accessory col-sm-4')
+    accessoryButton.addEventListener('click', function(event) {
+        removeFromWishList(index, 'accessory' + event.target.dataset.accessoryKey)
     });
-    accessoryBody.appendChild(accessoryButton);
+
+    cards[index].appendChild(accessoryButton);
 }
 
 // creates the displayWishlist() function
 // this function renders the added accessories on the wishlist.html page
 function displayWishlist() {
     for (let i = 0; i < storedItems.length; i++) {
-        displayAccessory(storedItems[i])
-        displayAccessoryBtnRemove(i, 'accessory' + (i + 1))
+        displayAccessory(storedItems[i], i)
+        displayAccessoryBtnRemove(i)
         console.log("Stored Item ", storedItems.length);
     }
 }
 
 // Remove the stored accessories from the WishList when "Remove" is clicked
-function removeFromWishList(index, key, htmlComponent) {
-    console.log("Removed index " + index, ":" + key);
-    let elem = document.getElementsByClassName(htmlComponent);
+function removeFromWishList(index, key) {
+
+    let elem = document.querySelector(`.accessory[data-accessory-key="${index}"]`);
     console.log("elements ", elem);
-    elem[index].parentNode.removeChild(elem[index]);
+    elem.parentNode.removeChild(elem);
     storedItems.splice(index, 1);
     localStorage.removeItem(key);
-    console.log("elem[index] ", elem[index]);
+    console.log("Removed index " + index, ":" + key);
+    // console.log("removedStoredkey ", key);
+    // console.log("removedArrayIndex", index);
+
 }
 
 // handles errors 

@@ -11,7 +11,15 @@ let accessory = {
 };
 
 // Ensures local storage is empty before adding any accessory
-localStorage.clear();
+// if (localStorage.getItem('accessory1', 'accessory2', 'accessory3') !== null) {
+//     alert("Hi, dear customer!!\nFor security reasons, your wishlist will be emptied after 1 minute\n\nPlease press OK: To confirm, or Cancel: to decline.");
+//     // clears the localStorage in the wishlist one minute after any accessory is added
+//     setTimeout(() => {
+localStorage.clear()
+    //     }, 10000)
+    // } else if (localStorage.length === 0) {
+    //     console.log('Your wishlist is empty');
+    // }
 
 // Object Constructor function
 function Accessory(name, price, color, imageHref) {
@@ -152,14 +160,15 @@ for (let i = 0; i < buttons.length; i++) {
 
 function loadRemoteAccessories(clickedIndex) {
 
-    // remove the Accessory HTML components
-    prevComponent = document.getElementsByClassName("accessory col-sm-4");
+    // remove the Accessory HTML components from the DOM
+    const accessoriesToRemove = document.querySelectorAll(".accessory.col-sm-4");
+
+    for (let i = 0; i < accessoriesToRemove.length; i++) {
+        accessoriesToRemove[i].parentNode.removeChild(accessoriesToRemove[i]);
+    };
 
     // delete accessories array
-    for (let i = 0; i < accessories.length; i++) {
-        prevComponent[i].parentNode.removeChild(prevComponent[i]);
-        accessories.splice(i, 1);
-    };
+    accessories.splice(0, accessories.length);
 
     // Grab the categories
     let category = navButtons[clickedIndex].textContent.toLowerCase();
@@ -197,7 +206,7 @@ for (let i = 0; i < navButtons.length; i++) {
 
 // The wishlist 
 
-// This function stores the accessory1 in local storage 
+// This function stores the accessories in local storage 
 function addToWishList(accessory) {
     if (localStorage.getItem('accessory1') === null) {
         let accessory1asJson = JSON.stringify(accessory);

@@ -11,3 +11,5 @@ _It is important to regularly commit the changes that you make in your project u
 Once you have downloaded the files, looked through the HTML and checked the git repository, work through the following tasks to demonstrate the JavaScript techniques that you've learnt.  They don't have to be completed in the order that they are listed, although they are listed in an order that should get progressively more challenging.
 
 _Don't forget that `console.log` can be used to output information in any functions you write.  `console.log` can be very useful to help to identify why something isn't working in your JavaScript code._
+
+[![Run on Repl.it](https://repl.it/badge/github/dangerrg/Accessory-wishlist)](https://repl.it/github/dangerrg/Accessory-wishlist)
